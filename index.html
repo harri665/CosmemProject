@@ -17,7 +17,25 @@
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
     <div class="container mx-auto px-4">
         <h1 class="text-3xl pt-8 pb-2 text-center font-bold">Riemann Sum Calculator</h1>
+        
         <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+            <div class="container mx-auto px-4">
+                <div class="flex justify-between items-center">
+                    <button class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="example('x^2',0,10,5,'left')">
+                        x^2
+                    </button>
+                    <button class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="example('sin(x)',0,10,20,'left')">
+                        sin(x)
+                    </button>
+                    <button class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="example('tan(x)',1.2,2,20,'midpoint')">
+                        tan(x)
+                    </button>
+                    <button class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="example('1/2x',0,10,5,'right')">
+                        1/2x
+                    </button>
+                </div>
+            </div>
+            
             <form id="riemannForm" class="mb-4">
                 <input type="text" oninput="updateLaTeX(this.value)" onchange="calculateRiemannSum()" id="functionInput" placeholder="Enter function in LaTeX (e.g., x^2)" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4" required>
                 <input type="number" onchange="calculateRiemannSum()" id="a" placeholder="Enter a (start of interval)" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4" required>

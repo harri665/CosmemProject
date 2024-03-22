@@ -112,3 +112,11 @@ function drawFunctionAndRectangles(func, a, b, n, sum, method) {
     }
 }
 
+function example(func,a,b,n,method) {
+    document.getElementById('functionInput').value = func
+    document.getElementById('a').value = a
+    document.getElementById('b').value = b 
+    document.getElementById('n').value = n 
+    document.getElementById('method').value = method
+    calculateRiemannSum()
+}
