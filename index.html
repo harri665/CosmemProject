@@ -16,35 +16,36 @@
     ></script>
   </head>
   <body class="bg-gray-100 font-sans leading-normal tracking-normal">
-    <div class="container mx-auto px-4">
-      <h1 class="text-3xl pt-8 pb-2 text-center font-bold">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-2xl sm:text-3xl pt-8 pb-2 text-center font-bold">
         Riemann Sum Calculator
       </h1>
       <p class="">By Harrison and Mary</p>
 
-      <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+      <div class="bg-white shadow-md rounded px-4 pt-6 pb-8 mb-4 flex flex-col">
         <div class="container mx-auto px-4">
-          <div class="flex justify-between items-center">
+          <div class="flex  sm:flex-row justify-between items-center">
             <button
-              class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm sm:text-base"
               onclick="example('x^2',0,10,5,'left')"
+
             >
               x^2
             </button>
             <button
-              class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm sm:text-base"
               onclick="example('sin(x)',0,10,20,'left')"
             >
               sin(x)
             </button>
             <button
-              class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm sm:text-base"
               onclick="example('tan(x)',1.2,2,20,'midpoint')"
             >
               tan(x)
             </button>
             <button
-              class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm sm:text-base"
               onclick="example('1/2x',0,10,5,'right')"
             >
               1/2x
@@ -59,7 +60,7 @@
             onchange="calculateRiemannSum()"
             id="functionInput"
             placeholder="Enter function in LaTeX (e.g., x^2)"
-            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
+            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4 text-sm sm:text-base"
             required
           />
           <input
@@ -67,7 +68,7 @@
             onchange="calculateRiemannSum()"
             id="a"
             placeholder="Enter a (start of interval)"
-            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
+            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4 text-sm sm:text-base"
             required
           />
           <input
@@ -75,7 +76,7 @@
             onchange="calculateRiemannSum()"
             id="b"
             placeholder="Enter b (end of interval)"
-            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
+            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4 text-sm sm:text-base"
             required
           />
           <input
@@ -83,13 +84,13 @@
             onchange="calculateRiemannSum()"
             id="n"
             placeholder="Enter n (number of subintervals)"
-            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
+            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4 text-sm sm:text-base"
             required
           />
           <select
             id="method"
             onchange="calculateRiemannSum()"
-            class="shadow border rounded py-2 px-3 text-gray-700 mb-4"
+            class="shadow border rounded py-2 px-3 text-gray-700 mb-4 text-sm sm:text-base"
           >
             <option value="left">Left Endpoint</option>
             <option value="right">Right Endpoint</option>
@@ -99,7 +100,7 @@
           <button
             type="button"
             onclick="calculateRiemannSum()"
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-sm sm:text-base"
           >
             Calculate
           </button>
@@ -111,8 +112,7 @@
         <div id="canvasContainer" class="pt-4">
           <canvas
             id="myCanvas"
-            width="600"
-            height="400"
+            style="width: 100%; max-width: 600px; height: auto"
             class="border-2 border-gray-300"
           >
             Your browser does not support the HTML canvas tag.
@@ -121,8 +121,6 @@
         <!-- partial:index.partial.html -->
         <canvas id="canvas"></canvas>
         <div class="container"></div>
-
-
         <script type="importmap">
           {
             "imports": {
@@ -139,7 +137,6 @@
         <script type="module" src="./script.js"></script>
       </div>
     </div>
-
     <script>
       function updateLaTeX(expression) {
         // Dynamically update the displayed LaTeX using MathJax
