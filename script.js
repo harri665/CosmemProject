@@ -3,6 +3,8 @@ import {OrbitControls} from "three/addons/controls/OrbitControls.js";
 import {RoundedBoxGeometry} from "three/addons/geometries/RoundedBoxGeometry.js";
 import { GUI } from 'https://cdn.skypack.dev/lil-gui@0.16.1';
 
+
+
 const containerEl = document.querySelector(".container");
 const canvasEl = document.querySelector("#canvas");
 
@@ -79,6 +81,7 @@ function createMainScene() {
     mainOrbit.minDistance = 13;
     mainOrbit.maxDistance = 13;
     mainOrbit.enableDamping = true;
+    mainOrbit.enableRotate = false; 
 
     const planeGeometry = new THREE.PlaneGeometry(100, 100);
     const shadowPlaneMaterial = new THREE.ShadowMaterial({
