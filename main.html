@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riemann Sum Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.5.0/math.min.js"></script>
+    <script src="riemann.js"></script>
+    <script>
+        // Placeholder for a more complex function that converts input to MathML
+        function updateMathML(expression) {
+            // This example directly sets the input as text content inside a <mtext> element.
+            // Real conversion to MathML should be done here.
+            document.getElementById('mathMLDisplay').innerHTML = `<math xmlns="http://www.w3.org/1998/Math/MathML"><mtext>${expression}</mtext></math>`;
+        }
+    </script>
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <div class="container mx-auto px-4">
+        <h1 class="text-3xl pt-8 pb-2 text-center font-bold">Riemann Sum Calculator</h1>
+        <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+            <form id="riemannForm" class="mb-4">
+                <input type="text" onchange="calculateRiemannSum()" id="functionInput" placeholder="Enter function (e.g., x^2)" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4" required>
+                <input type="number" onchange="calculateRiemannSum()" id="a" placeholder="Enter a (start of interval)" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4" required>
+                <input type="number" onchange="calculateRiemannSum()" id="b" placeholder="Enter b (end of interval)" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4" required>
+                <input type="number" onchange="calculateRiemannSum()" id="n" placeholder="Enter n (number of subintervals)" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4" required>
+                <select id="method" onchange="calculateRiemannSum()" class="shadow border rounded py-2 px-3 text-gray-700 mb-4">
+                    <option value="left">Left Endpoint</option>
+                    <option value="right">Right Endpoint</option>
+                    <option value="midpoint">Midpoint</option>
+                </select>
+                
+                <button type="button" onclick="calculateRiemannSum()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Calculate
+                </button>
+            </form>
+            <div id="result" class="pt-4"></div>
+            <div id="mathMLDisplay" class="my-4"></div>
+            <div id="canvasContainer" class="pt-4">
+                <canvas id="myCanvas" width="600" height="400" class="border-2 border-gray-300">
+                    Your browser does not support the HTML canvas tag.
+                </canvas>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
