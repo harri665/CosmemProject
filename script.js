@@ -53,7 +53,7 @@ function createMainScene() {
     scene = new THREE.Scene();
 
     mainCamera = new THREE.PerspectiveCamera(45, containerEl.clientWidth / containerEl.clientHeight, .01, 1000);
-    mainCamera.position.set(0, .5, 2).multiplyScalar(8);
+    mainCamera.position.set(0, .5, 4).multiplyScalar(8);
 
     rayCaster = new THREE.Raycaster();
     dummy = new THREE.Object3D();
