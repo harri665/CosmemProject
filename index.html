@@ -1,79 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Riemann Sum Calculator</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.5.0/math.min.js"></script>
     <script src="riemann.js"></script>
     <!-- Include MathJax for LaTeX rendering -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three/examples/js/controls/OrbitControls.js"></script>
-
-</head>
-<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+  </head>
+  <body class="bg-gray-100 font-sans leading-normal tracking-normal">
     <div class="container mx-auto px-4">
-        <h1 class="text-3xl pt-8 pb-2 text-center font-bold">Riemann Sum Calculator</h1>
-        <p class="">By Harrison and Mary</p>
-        
-        <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
-            <div class="container mx-auto px-4">
-                <div class="flex justify-between items-center">
-                    <button class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="example('x^2',0,10,5,'left')">
-                        x^2
-                    </button>
-                    <button class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="example('sin(x)',0,10,20,'left')">
-                        sin(x)
-                    </button>
-                    <button class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="example('tan(x)',1.2,2,20,'midpoint')">
-                        tan(x)
-                    </button>
-                    <button class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="example('1/2x',0,10,5,'right')">
-                        1/2x
-                    </button>
-                </div>
-            </div>
-            
-            <form id="riemannForm" class="mb-4">
-                <input type="text" oninput="updateLaTeX(this.value)" onchange="calculateRiemannSum()" id="functionInput" placeholder="Enter function in LaTeX (e.g., x^2)" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4" required>
-                <input type="number" onchange="calculateRiemannSum()" id="a" placeholder="Enter a (start of interval)" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4" required>
-                <input type="number" onchange="calculateRiemannSum()" id="b" placeholder="Enter b (end of interval)" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4" required>
-                <input type="number" onchange="calculateRiemannSum()" id="n" placeholder="Enter n (number of subintervals)" class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4" required>
-                <select id="method" onchange="calculateRiemannSum()" class="shadow border rounded py-2 px-3 text-gray-700 mb-4">
-                    <option value="left">Left Endpoint</option>
-                    <option value="right">Right Endpoint</option>
-                    <option value="midpoint">Midpoint</option>
-                </select>
-                
-                <button type="button" onclick="calculateRiemannSum()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                    Calculate
-                </button>
-            </form>
-            <div id="result" class="pt-4"></div>
-            <div id="latexDisplay" class="mt-4 mb-4">
-                <!-- LaTeX content will be dynamically inserted and rendered here -->
-            </div>
-            <div id="canvasContainer" class="pt-4">
-                <canvas id="myCanvas" width="600" height="400" class="border-2 border-gray-300">
-                    Your browser does not support the HTML canvas tag.
-                </canvas>
-            </div>
-            <!-- 3D Visualization Container -->
-            <div id="threeJsContainer" style="width: 600px; height: 400px;"></div>
-            
+      <h1 class="text-3xl pt-8 pb-2 text-center font-bold">
+        Riemann Sum Calculator
+      </h1>
+      <p class="">By Harrison and Mary</p>
+
+      <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+        <div class="container mx-auto px-4">
+          <div class="flex justify-between items-center">
+            <button
+              class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onclick="example('x^2',0,10,5,'left')"
+            >
+              x^2
+            </button>
+            <button
+              class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onclick="example('sin(x)',0,10,20,'left')"
+            >
+              sin(x)
+            </button>
+            <button
+              class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onclick="example('tan(x)',1.2,2,20,'midpoint')"
+            >
+              tan(x)
+            </button>
+            <button
+              class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onclick="example('1/2x',0,10,5,'right')"
+            >
+              1/2x
+            </button>
+          </div>
         </div>
+
+        <form id="riemannForm" class="mb-4">
+          <input
+            type="text"
+            oninput="updateLaTeX(this.value)"
+            onchange="calculateRiemannSum()"
+            id="functionInput"
+            placeholder="Enter function in LaTeX (e.g., x^2)"
+            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
+            required
+          />
+          <input
+            type="number"
+            onchange="calculateRiemannSum()"
+            id="a"
+            placeholder="Enter a (start of interval)"
+            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
+            required
+          />
+          <input
+            type="number"
+            onchange="calculateRiemannSum()"
+            id="b"
+            placeholder="Enter b (end of interval)"
+            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
+            required
+          />
+          <input
+            type="number"
+            onchange="calculateRiemannSum()"
+            id="n"
+            placeholder="Enter n (number of subintervals)"
+            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
+            required
+          />
+          <select
+            id="method"
+            onchange="calculateRiemannSum()"
+            class="shadow border rounded py-2 px-3 text-gray-700 mb-4"
+          >
+            <option value="left">Left Endpoint</option>
+            <option value="right">Right Endpoint</option>
+            <option value="midpoint">Midpoint</option>
+          </select>
+
+          <button
+            type="button"
+            onclick="calculateRiemannSum()"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Calculate
+          </button>
+        </form>
+        <div id="result" class="pt-4"></div>
+        <div id="latexDisplay" class="mt-4 mb-4">
+          <!-- LaTeX content will be dynamically inserted and rendered here -->
+        </div>
+        <div id="canvasContainer" class="pt-4">
+          <canvas
+            id="myCanvas"
+            width="600"
+            height="400"
+            class="border-2 border-gray-300"
+          >
+            Your browser does not support the HTML canvas tag.
+          </canvas>
+        </div>
+        <!-- partial:index.partial.html -->
+        <canvas id="canvas"></canvas>
+        <div class="container"></div>
+
+
+        <script type="importmap">
+          {
+            "imports": {
+              "three": "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.145.0/three.module.min.js",
+              "three/addons/": "https://threejs.org/examples/jsm/"
+            }
+          }
+        </script>
+        <script
+          async
+          src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"
+        ></script>
+        <!-- partial -->
+        <script type="module" src="./script.js"></script>
+      </div>
     </div>
 
     <script>
-        function updateLaTeX(expression) {
-            // Dynamically update the displayed LaTeX using MathJax
-            const latexDisplay = document.getElementById('latexDisplay');
-            latexDisplay.innerHTML = `\\(${expression}\\)`;
-            MathJax.typesetPromise([latexDisplay]); // This tells MathJax to process the updated text
-        }
+      function updateLaTeX(expression) {
+        // Dynamically update the displayed LaTeX using MathJax
+        const latexDisplay = document.getElementById("latexDisplay");
+        latexDisplay.innerHTML = `\\(${expression}\\)`;
+        MathJax.typesetPromise([latexDisplay]); // This tells MathJax to process the updated text
+      }
     </script>
-</body>
+  </body>
 </html>
