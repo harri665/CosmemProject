@@ -6,6 +6,7 @@ function calculateRiemannSum() {
     const n = parseInt(document.getElementById('n').value);
     const method = document.getElementById('method').value;
 
+    
     // Calculate deltaX
     const deltaX = (b - a) / n;
     let sum = 0;
@@ -28,6 +29,7 @@ function calculateRiemannSum() {
         const f_x = math.evaluate(funcInput.replace(/x/g, `(${x})`));
         sum += f_x * deltaX;
     }
+    console.log(deltaX)
 
     // Display the result and draw the function and rectangles
     document.getElementById('result').textContent = `Riemann Sum: ${sum}`;
@@ -46,10 +48,10 @@ function drawFunctionAndRectangles(func, a, b, n, sum, method) {
     const width = canvas.width;
     const height = canvas.height;
 
-    // Clear the canvas before drawing
+    // Clear the canvas
     ctx.clearRect(0, 0, width, height);
 
-    // Calculate function values for plotting
+    //PRE
     const plotPoints = 100;
     const plotDeltaX = (b - a) / plotPoints;
     const funcValues = [];
@@ -59,12 +61,12 @@ function drawFunctionAndRectangles(func, a, b, n, sum, method) {
         funcValues.push({x, y});
     }
 
-    // Determine the scaling factors based on the max and min function values
+    // Scaling
     const maxY = Math.max(...funcValues.map(v => v.y));
     const minY = Math.min(...funcValues.map(v => v.y));
     const scaleX = width / (b - a);
     const scaleY = height / (maxY - minY);
-    const originY = height - (0 - minY) * scaleY; // Adjust based on min Y
+    const originY = height - (0 - minY) * scaleY;
 
     // Draw the function
     ctx.beginPath();
