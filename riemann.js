@@ -1,3 +1,33 @@
+
+
+function scrollPage() {
+    const button = document.getElementById('scrollButton');
+    const isAtBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight;
+  
+    if (isAtBottom) {
+      // Scroll to the top
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    } else {
+      // Scroll to the bottom
+      window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});
+    }
+  }
+  
+  function updateButtonText() {
+    const button = document.getElementById('scrollButton');
+    const isAtBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight;
+  
+    if (isAtBottom) {
+      button.innerText = "Go to Top";
+    } else {
+      button.innerText = "Go to Bottom";
+    }
+  }
+  
+  window.addEventListener('scroll', updateButtonText);
+  updateButtonText();
+  
+
 function calculateRiemannSum() {
     // Retrieve inputs and selected method
     const funcInput = document.getElementById('functionInput').value;

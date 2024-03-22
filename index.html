@@ -15,6 +15,10 @@
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
     ></script>
   </head>
+  <button id="scrollButton" onclick="scrollPage()" class="fixed bottom-5 right-5 p-2 bg-red-500 text-white rounded-md z-50 hover:bg-blue-700 transition-colors duration-300">
+    Go to Bottom
+  </button>
+  
   <body class="bg-gray-100 font-sans leading-normal tracking-normal">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-2xl sm:text-3xl pt-8 pb-2 text-center font-bold">
@@ -118,6 +122,9 @@
             Your browser does not support the HTML canvas tag.
           </canvas>
         </div>
+        <h2 class ="text-2xl sm:text-3xl pt-8 pb-2 text-center font-bold">Real world ! </h2>
+        <h2 class =" sm:text-3xl pt-8 pb-2 text-center ">Riemann sums are commonly used in voxel application in the 3d world as shown below </h2>
+
         <!-- partial:index.partial.html -->
         <canvas id="canvas"></canvas>
         <div class="container"></div>
@@ -145,5 +152,6 @@
         MathJax.typesetPromise([latexDisplay]); // This tells MathJax to process the updated text
       }
     </script>
+    
   </body>
 </html>
