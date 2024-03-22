@@ -75,8 +75,9 @@ function createMainScene() {
     mainOrbit = new OrbitControls(mainCamera, containerEl);
     mainOrbit.enablePan = false;
     mainOrbit.autoRotate = true;
+    mainOrbit.enableZoom= false; 
     mainOrbit.minDistance = 13;
-    mainOrbit.maxDistance = 40;
+    mainOrbit.maxDistance = 13;
     mainOrbit.enableDamping = true;
 
     const planeGeometry = new THREE.PlaneGeometry(100, 100);
