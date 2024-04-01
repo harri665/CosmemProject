@@ -23,15 +23,11 @@
     Go to Bottom
   </button>
 
-  <body class="bg-gray-100 font-sans">
+  <body class="bg-gray-100 font-sans  ">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-2xl sm:text-3xl pt-8 pb-2 text-center font-bold">
         Riemann Sum Calculator
       </h1>
-
-
-
-
       <p class="">By Harrison and Mary</p>
 
       <div class="bg-white shadow-md rounded px-4 pt-6 pb-8 mb-4 flex flex-col">
@@ -138,6 +134,7 @@
         </h2>
 
         <!-- partial:index.partial.html -->
+
       </div>
     </div>
     <script>
@@ -148,88 +145,52 @@
         MathJax.typesetPromise([latexDisplay]); // This tells MathJax to process the updated text
       }
     </script>
-    <div class="controls p-4 space-y-4 bg-gray-200" id="controlsContainer">
-      <div>
-        <label for="showOriginal" class="flex items-center">
-          <input
-            type="checkbox"
-            id="showOriginal"
-            class="toggle toggle-primary"
-          />
+<div class="controls p-4 space-y-4 bg-gray-200" id="controlsContainer">
+  <div>
+      <label for="showOriginal" class="flex items-center">
+          <input type="checkbox" id="showOriginal" class="toggle toggle-primary">
           <span class="ml-2">Show Original Mesh</span>
-        </label>
-      </div>
-      <div>
-        <label for="showHelper" class="flex items-center">
-          <input
-            type="checkbox"
-            id="showHelper"
-            class="toggle toggle-primary"
-          />
+      </label>
+  </div>
+  <div>
+      <label for="showHelper" class="flex items-center">
+          <input type="checkbox" id="showHelper" class="toggle toggle-primary">
           <span class="ml-2">Show Box Helper</span>
-        </label>
-      </div>
-      <div>
-        <label for="gridSize">Grid Size</label>
-        <input
-          type="range"
-          id="gridSize"
-          min="0.3"
-          max="0.8"
-          step="0.1"
-          value="0.3"
-          class="range range-primary"
-        />
-        <span id="gridSizeValue" class="range-value">0.3</span>
-      </div>
-      <div>
-        <label for="boxSize">Voxel Size</label>
-        <input
-          type="range"
-          id="boxSize"
-          min="0.05"
-          max="0.3"
-          step="0.01"
-          value="0.2"
-          class="range range-primary"
-        />
-        <span id="boxSizeValue" class="range-value">0.2</span>
-      </div>
-      <div>
-        <label for="boxRoundness">Voxel Roundness</label>
-        <input
-          type="range"
-          id="boxRoundness"
-          min="0"
-          max="0.15"
-          step="0.01"
-          value="0.03"
-          class="range range-primary"
-        />
-        <span id="boxRoundnessValue" class="range-value">0.03</span>
-      </div>
-      <div>
-        <label for="randomizer" class="flex items-center">
-          <input
-            type="checkbox"
-            id="randomizer"
-            class="toggle toggle-primary"
-          />
+      </label>
+  </div>
+  <div>
+      <label for="gridSize">Grid Size</label>
+      <input type="range" id="gridSize" min="0.3" max="0.8" step="0.1" value="0.3" class="range range-primary">
+      <span id="gridSizeValue" class="range-value">0.3</span>
+  </div>
+  <div>
+      <label for="boxSize">Voxel Size</label>
+      <input type="range" id="boxSize" min="0.05" max="0.3" step="0.01" value="0.2" class="range range-primary">
+      <span id="boxSizeValue" class="range-value">0.2</span>
+  </div>
+  <div>
+      <label for="boxRoundness">Voxel Roundness</label>
+      <input type="range" id="boxRoundness" min="0" max="0.15" step="0.01" value="0.03" class="range range-primary">
+      <span id="boxRoundnessValue" class="range-value">0.03</span>
+  </div>
+  <div>
+      <label for="randomizer" class="flex items-center">
+          <input type="checkbox" id="randomizer" class="toggle toggle-primary">
           <span class="ml-2">Randomize Position</span>
-        </label>
-      </div>
-      <div>
-        <label for="geometry">Geometry</label>
-        <select id="geometry" class="select select-primary w-full">
+      </label>
+  </div>
+  <div>
+      <label for="geometry">Geometry</label>
+      <select id="geometry" class="select select-primary w-full">
           <option value="torus knot">Torus Knot</option>
           <option value="torus">Torus</option>
           <option value="sphere">Sphere</option>
-        </select>
-      </div>
-    </div>
-    
+      </select>
+  </div>
+</div>
+
     <canvas class="pointer-events-none h-[100vh]" id="canvas"></canvas>
-    <div class="threed"></div>
+    <div class="container"></div>
     <script type="importmap">
       {
         "imports": {
@@ -244,6 +205,8 @@
     ></script>
     <!-- partial -->
     <script type="module" src="./script.js"></script>
-    <script></script>
+    <script>
+ 
+    </script>
   </body>
 </html>
