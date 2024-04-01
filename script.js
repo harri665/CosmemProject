@@ -75,6 +75,8 @@ function createMainScene() {
     scene.add(lightHolder);
 
     mainOrbit = new OrbitControls(mainCamera, containerEl);
+    mainOrbit.enable = false; 
+    
     mainOrbit.enablePan = false;
     mainOrbit.autoRotate = true;
     mainOrbit.enableZoom= false; 
