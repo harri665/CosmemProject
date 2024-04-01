@@ -5,7 +5,7 @@ import { GUI } from 'https://cdn.skypack.dev/lil-gui@0.16.1';
 
 
 
-const containerEl = document.querySelector(".3d");
+const containerEl = document.querySelector(".threed");
 const canvasEl = document.querySelector("#canvas");
 
 let renderer, scene, mainCamera, mainOrbit, lightHolder;
