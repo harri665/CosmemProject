@@ -32,7 +32,7 @@ const geometries = {
 }
 
 createMainScene();
-createControls();
+// createControls();
 
 window.addEventListener("resize", updateSceneSize);
 
@@ -239,3 +239,35 @@ function createControls() {
         instancedMesh.visible = !params.showOriginal;
     });
 }
+
+
+document
+.getElementById("showOriginalMesh")
+.addEventListener("click", () => {
+  params.showOriginal = !params.showOriginal;
+  outerShapeMesh.visible = params.showOriginal;
+  instancedMesh.visible = !params.showOriginal;
+  render(); // Make sure this function re-renders your scene
+});
+
+document.getElementById("showBoxHelper").addEventListener("click", () => {
+params.showHelper = !params.showHelper;
+boxHelper.visible = params.showHelper;
+render(); // Make sure this function re-renders your scene
+});
+
+document.getElementById("gridSize").addEventListener("input", (event) => {
+params.gridSize = parseFloat(event.target.value);
+// Re-voxelize and update the scene based on the new grid size
+// This might include re-creating your instancedMesh or other scene objects
+});
+
+document
+.getElementById("voxelSize")
+.addEventListener("input", (event) => {
+  params.boxSize = parseFloat(event.target.value);
+  // Adjust voxel size in your scene
+  // This might require updating geometry or material of your instancedMesh
+});
+
+// Repeat the pattern for other controls as necessary
