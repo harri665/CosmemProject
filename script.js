@@ -243,33 +243,68 @@ function createControls() {
 }
 
 
-document
-.getElementById("showOriginalMesh")
-.addEventListener("click", () => {
-  params.showOriginal = !params.showOriginal;
-  outerShapeMesh.visible = params.showOriginal;
-  instancedMesh.visible = !params.showOriginal;
-  render(); // Make sure this function re-renders your scene
+document.getElementById('showOriginal').addEventListener('change', function() {
+    params.showOriginal = this.checked;
+    outerShapeMesh.visible = params.showOriginal;
+    instancedMesh.visible = !params.showOriginal;
 });
 
-document.getElementById("showBoxHelper").addEventListener("click", () => {
-params.showHelper = !params.showHelper;
-boxHelper.visible = params.showHelper;
-render(); // Make sure this function re-renders your scene
+document.getElementById('showHelper').addEventListener('change', function() {
+    params.showHelper = this.checked;
+    boxHelper.visible = params.showHelper;
 });
 
-document.getElementById("gridSize").addEventListener("input", (event) => {
-params.gridSize = parseFloat(event.target.value);
-// Re-voxelize and update the scene based on the new grid size
-// This might include re-creating your instancedMesh or other scene objects
+document.getElementById('gridSize').addEventListener('input', function() {
+    params.gridSize = parseFloat(this.value);
+    document.getElementById('gridSizeValue').innerText = this.value;
+    voxels = [];
+    voxelizeMesh(outerShapeMesh);
+    updateInstancedMesh();
 });
 
-document
-.getElementById("voxelSize")
-.addEventListener("input", (event) => {
-  params.boxSize = parseFloat(event.target.value);
-  // Adjust voxel size in your scene
-  // This might require updating geometry or material of your instancedMesh
+document.getElementById('boxSize').addEventListener('input', function() {
+    params.boxSize = parseFloat(this.value);
+    document.getElementById('boxSizeValue').innerText = this.value;
+    updateVoxelGeometry();
 });
 
-// Repeat the pattern for other controls as necessary
+document.getElementById('boxRoundness').addEventListener('input', function() {
+    params.boxRoundness = parseFloat(this.value);
+    document.getElementById('boxRoundnessValue').innerText = this.value;
+    updateVoxelGeometry();
+});
+
+document.getElementById('randomizer').addEventListener('change', function() {
+    params.randomizer = this.checked;
+    recreateVoxels();
+});
+
+document.getElementById('geometry').addEventListener('change', function() {
+    params.geometry = this.value;
+    outerShapeMesh.geometry.dispose(); // Dispose of the current geometry before replacing
+    outerShapeMesh.geometry = geometries[params.geometry];
+    voxels = [];
+    voxelizeMesh(outerShapeMesh);
+    updateInstancedMesh();
+});
+
+// Function to update the geometry of voxels
+function updateVoxelGeometry() {
+    // Dispose of the current geometry before replacing
+    instancedMesh.geometry.dispose();
+    instancedMesh.geometry = new RoundedBoxGeometry(params.boxSize, params.boxSize, params.boxSize, 2, params.boxRoundness);
+    recreateVoxels();
+}
+
+// Function to update the instanced mesh based on the new voxels array
+function updateInstancedMesh() {
+    scene.remove(instancedMesh);
+    instancedMesh = new THREE.InstancedMesh(voxelGeometry, voxelMaterial, voxels.length);
+    instancedMesh.castShadow = true;
+    instancedMesh.receiveShadow = true;
+    scene.add(instancedMesh);
+    recreateVoxels();
+}
+
+// Initial render/update call
+render();
