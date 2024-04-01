@@ -186,6 +186,8 @@ function render() {
     lightHolder.quaternion.copy(mainCamera.quaternion);
     renderer.render(scene, mainCamera);
     requestAnimationFrame(render);
+    var elem = document.getElementById("findme");
+    elem.setAttribute("style","-ms-touch-action: auto;");
 }
 
 function updateSceneSize() {
