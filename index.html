@@ -36,6 +36,8 @@
             <button
               class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm sm:text-base"
               onclick="example('x^2',0,10,5,'left')"
+              aria-label="Plot x squared from 0 to 10 with 5 points using left Riemann sum"
+
             >
               x^2
             </button>
@@ -60,58 +62,82 @@
           </div>
         </div>
 
-        <form id="riemannForm" class="mb-4">
-          <input
-            type="text"
-            oninput="updateLaTeX(this.value)"
-            onchange="calculateRiemannSum()"
-            id="functionInput"
-            placeholder="Enter function in LaTeX (e.g., x^2)"
-            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4 text-sm sm:text-base"
-            required
-          />
-          <input
-            type="number"
-            onchange="calculateRiemannSum()"
-            id="a"
-            placeholder="Enter a (start of interval)"
-            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4 text-sm sm:text-base"
-            required
-          />
-          <input
-            type="number"
-            onchange="calculateRiemannSum()"
-            id="b"
-            placeholder="Enter b (end of interval)"
-            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4 text-sm sm:text-base"
-            required
-          />
-          <input
-            type="number"
-            onchange="calculateRiemannSum()"
-            id="n"
-            placeholder="Enter n (number of subintervals)"
-            class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4 text-sm sm:text-base"
-            required
-          />
-          <select
-            id="method"
-            onchange="calculateRiemannSum()"
-            class="shadow border rounded py-2 px-3 text-gray-700 mb-4 text-sm sm:text-base"
-          >
-            <option value="left">Left Endpoint</option>
-            <option value="right">Right Endpoint</option>
-            <option value="midpoint">Midpoint</option>
-          </select>
-
-          <button
-            type="button"
-            onclick="calculateRiemannSum()"
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-sm sm:text-base"
-          >
-            Calculate
-          </button>
+        <form id="riemannForm" class="flex flex-wrap justify-around items-center">
+          <div class="flex flex-col m-2 w-full md:w-auto">
+            <label for="functionInput" class="mb-1 text-sm sm:text-base">Function in LaTeX</label>
+            <input
+              type="text"
+              oninput="updateLaTeX(this.value)"
+              onchange="calculateRiemannSum()"
+              id="functionInput"
+              placeholder="e.g., x^2"
+              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
+          
+          <div class="flex flex-col m-2 w-full md:w-auto">
+            <label for="a" class="mb-1 text-sm sm:text-base">Start of Interval (a)</label>
+            <input
+              type="number"
+              onchange="calculateRiemannSum()"
+              id="a"
+              placeholder="Start"
+              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
+        
+          <div class="flex flex-col m-2 w-full md:w-auto">
+            <label for="b" class="mb-1 text-sm sm:text-base">End of Interval (b)</label>
+            <input
+              type="number"
+              onchange="calculateRiemannSum()"
+              id="b"
+              placeholder="End"
+              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
+        
+          <div class="flex flex-col m-2 w-full md:w-auto">
+            <label for="n" class="mb-1 text-sm sm:text-base">Number of Subintervals (n)</label>
+            <input
+              type="number"
+              onchange="calculateRiemannSum()"
+              id="n"
+              placeholder="Number"
+              class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            />
+          </div>
+        
+          <div class="flex flex-col m-2 w-full md:w-auto">
+            <label for="method" class="mb-1 text-sm sm:text-base">Method</label>
+            <select
+              id="method"
+              onchange="calculateRiemannSum()"
+              class="shadow border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+            >
+              <option value="left">Left Endpoint</option>
+              <option value="right">Right Endpoint</option>
+              <option value="midpoint">Midpoint</option>
+            </select>
+          </div>
+        
+          <div class="flex m-2 w-full md:w-auto">
+            <button
+              type="button"
+              onclick="calculateRiemannSum()"
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+            >
+              Calculate
+            </button>
+          </div>
         </form>
+        
+        
         <div id="result" class="pt-4"></div>
         <div id="latexDisplay" class="mt-4 mb-4">
           <!-- LaTeX content will be dynamically inserted and rendered here -->
